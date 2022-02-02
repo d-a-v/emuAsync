@@ -30,10 +30,10 @@ This library is unfinished, in alpha stage, and should not be relied on.
   These additional directories must exist:
   - `${ARDUINOLIB}/ESPUI`
   - `${ARDUINOLIB}/ArduinoJson` (dependency for ESPUI)
-    
+
 ```
 cd ${ARDUINOLIB}/emuAsync/tests
 ./ESPUI-gui
 ${ESP8266ARDUINO}/tests/host/bin/gui/gui
+firefox-or-chromium-browser http://localhost:9080
 ```
-    
