@@ -1,0 +1,3 @@
+#!/bin/sh -ex
+cd ${ESP8266ARDUINO}/tests/host
+make FORCE32=0 D=1 USERCFLAGS="-I ${ARDUINOLIB}/emuAsync/replacement" ULIBDIRS=${ARDUINOLIB}/emuAsync:${ARDUINOLIB}/ESPUI:${ARDUINOLIB}/ArduinoJson:${ARDUINOLIB}/arduinoWebSockets ${ARDUINOLIB}/ESPUI/examples/tabbedGui/tabbedGui
