@@ -8,10 +8,13 @@ This library is unfinished, in alpha stage, and should not be relied on.
 - Requirements:
 
   - esp8266/Arduino repository
+
     `export ESP8266ARDUINO=path/to/esp8266/Arduino`
 
   - Arduino libraries directory
+
     `export ARDUINOLIB=path/to/libraryDirectory`
+
     `ARDUINOLIB` can point to the Arduino IDE library directory
 
   - [arduinoWebSockets](https://github.com/Links2004/arduinoWebSockets)
@@ -23,6 +26,7 @@ This library is unfinished, in alpha stage, and should not be relied on.
     - `${ARDUINOLIB}/arduinoWebSockets` (dependency)
 
 - Testing With [ESPUI](https://github.com/s00500/ESPUI)
+
   These additional directories must exist:
   - `${ARDUINOLIB}/ESPUI`
   - `${ARDUINOLIB}/ArduinoJson` (dependency for ESPUI)
