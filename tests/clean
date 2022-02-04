@@ -1,0 +1,3 @@
+#!/bin/sh -ex
+cd ${ESP8266ARDUINO}/tests/host
+make clean
