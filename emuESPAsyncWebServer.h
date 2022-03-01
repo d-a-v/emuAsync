@@ -273,7 +273,14 @@ public:
         //TODO
     }
 
-    size_t count () const { return WEBSOCKETS_SERVER_CLIENT_MAX; } // XXXFIXMEonly connected
+    size_t count ()
+    {
+        size_t ret = 0;
+        for (int id = 0; id < WEBSOCKETS_SERVER_CLIENT_MAX; id++)
+            if (clientIsConnected(&_clients[id]))
+                ret++;
+        return ret;
+    }
 
     bool hasClient(int id)
     {
