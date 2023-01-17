@@ -206,6 +206,12 @@ public:
         return nullptr;
     }
 
+    void redirect (const String& url)
+    {
+        sendHeader("Location", url, true);
+        send(302);
+    }
+
 protected:
 
     void checkResponse ()
@@ -243,6 +249,7 @@ public:
 
     uint32_t id () const { return _id; }
     void text(const String& t);
+    bool canSend () { return true; }
 
 protected:
     AsyncWebSocket* _srv = nullptr;
