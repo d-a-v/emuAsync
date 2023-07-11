@@ -38,7 +38,6 @@ void AsyncWebSocket::addHandler(AsyncWebServer* webServer)
             case WStype_PING:
             case WStype_PONG:                awsType = WS_EVT_PONG; break;
             }
-Serial.printf("BLAH %p\n", this);
             _handler(this, client(num), awsType, nullptr, payload, length);
             
         }));
