@@ -6,6 +6,16 @@ void AsyncWebSocketClient::text(const String& t)
     _srv->sendTXT(_id, t.c_str(), t.length());
 }
 
+size_t AsyncWebSocketClient::write (uint8_t c)
+{
+    return _srv->sendTXT(_id, &c, 1);
+}
+
+size_t AsyncWebSocketClient::write (const uint8_t *buffer, size_t size)
+{
+    return _srv->sendTXT(_id, buffer, size);
+}
+
 void AsyncWebServer::addHandler(AsyncWebSocket* wsServer)
 {
     wsServer->addHandler(this);

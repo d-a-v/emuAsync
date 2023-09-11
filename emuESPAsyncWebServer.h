@@ -251,6 +251,10 @@ public:
     void text(const String& t);
     bool canSend () { return true; }
 
+    // compatibility with arduinoJson::serializeJson()
+    size_t write (uint8_t c);
+    size_t write (const uint8_t *buffer, size_t size);
+
 protected:
     AsyncWebSocket* _srv = nullptr;
     WSclient_t* _cli = nullptr;
