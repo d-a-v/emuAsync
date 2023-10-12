@@ -107,6 +107,8 @@ public:
     AsyncWebHandler& setAuthentication (const char *username, const char *password)
     {
         // todo
+        (void)username;
+        (void)password;
         return *this;
     }
 
@@ -127,8 +129,9 @@ public:
         return *this;
     }
 
-    AsyncWebServerResponse* beginResponse_P (int code, const String& contentType, const uint8_t * content, size_t len, AwsTemplateProcessor callback=nullptr)
+    AsyncWebServerResponse* beginResponse_P (int code, const String& contentType, const uint8_t * content, size_t len, AwsTemplateProcessor callback = nullptr)
     {
+        (void)callback;
         checkResponse();
         _respCode = code;
         _respContentType = contentType;
@@ -136,8 +139,9 @@ public:
         return this;
     }
 
-    AsyncWebServerResponse* beginResponse_P(int code, const String& contentType, PGM_P content, AwsTemplateProcessor callback=nullptr)
+    AsyncWebServerResponse* beginResponse_P(int code, const String& contentType, PGM_P content, AwsTemplateProcessor callback = nullptr)
     {
+        (void)callback;
         checkResponse();
         _respCode = code;
         _respContentType = contentType;
@@ -182,13 +186,15 @@ public:
         return hasArg(name);
     }
 
-    bool hasParam(const __FlashStringHelper * data, bool post=false, bool file=false) const
+    bool hasParam(const __FlashStringHelper * data, bool post=false, bool file = false) const
     {
         return hasParam(String(data), post, file);
     }
 
-    AsyncWebParameter* getParam(const String& name, bool post=false, bool file=false) const
+    AsyncWebParameter* getParam(const String& name, bool post = false, bool file = false) const
     {
+        (void)post;
+        (void)file;
         for (int i = 0; i < args(); i++)
             if (name == argName(i))
                 return getParam(i);
@@ -202,6 +208,7 @@ public:
 
     AsyncWebParameter* getParam(size_t num) const
     {
+        (void)num;
         abort();
         return nullptr;
     }
@@ -281,6 +288,8 @@ public:
 
     /*AsyncWebHandler&*/void setAuthentication(const char *username, const char *password)
     {
+        (void)username;
+        (void)password;
         //TODO
     }
 

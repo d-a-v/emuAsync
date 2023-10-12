@@ -36,7 +36,6 @@ void AsyncWebSocket::addHandler(AsyncWebServer* webServer)
             AwsEventType awsType;
             switch (type)
             {
-            case WStype_ERROR:               awsType = WS_EVT_ERROR; break;
             case WStype_DISCONNECTED:        awsType = WS_EVT_DISCONNECT; break;
             case WStype_CONNECTED:           awsType = WS_EVT_CONNECT; break;
             case WStype_TEXT:
@@ -47,6 +46,8 @@ void AsyncWebSocket::addHandler(AsyncWebServer* webServer)
             case WStype_FRAGMENT_FIN:        awsType = WS_EVT_DATA; break;
             case WStype_PING:
             case WStype_PONG:                awsType = WS_EVT_PONG; break;
+            case WStype_ERROR:
+            default:                         awsType = WS_EVT_ERROR; break;
             }
             _handler(this, client(num), awsType, nullptr, payload, length);
             
