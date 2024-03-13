@@ -34,6 +34,7 @@ using AsyncWebServerRequest = AsyncWebServer;
 using AsyncCallbackWebHandler = AsyncWebServer;
 using AsyncWebServerResponse = AsyncWebServer;
 using AsyncWebSocketResponse = AsyncWebServer;
+using AsyncResponseStream = AsyncWebServer;
 using WebRequestMethodComposite = HTTPMethod;
 using ArRequestHandlerFunction = std::function<void(AsyncWebServerRequest* request)>;
 using AwsTemplateProcessor = std::function<String(const String&)>;
@@ -129,7 +130,7 @@ public:
         return *this;
     }
 
-    AsyncWebServerResponse* beginResponse_P (int code, const String& contentType, const uint8_t * content, size_t len, AwsTemplateProcessor callback = nullptr)
+    AsyncWebServerResponse* beginResponse_P(int code, const String& contentType, const uint8_t * content, size_t len, AwsTemplateProcessor callback = nullptr)
     {
         (void)callback;
         checkResponse();
@@ -146,6 +147,15 @@ public:
         _respCode = code;
         _respContentType = contentType;
         _response = new StreamConstPtr(content, strlen_P(content));
+        return this;
+    }
+
+    AsyncResponseStream* beginResponseStream(const String& contentType)
+    {
+        checkResponse();
+        _respCode = 200;
+        _respContentType = contentType;
+        _response = nullptr;
         return this;
     }
 
@@ -177,6 +187,12 @@ public:
     void send(int code, const char* content_type = "text/html", const String& content = emptyString)
     {
         return ESP8266WebServer::send(code, content_type, content);
+    }
+
+    void write(const char* buffer, size_t len)
+    // used by ESPUI, after ::beginResponseStream()
+    {
+        return ESP8266WebServer::send(_respCode, _respContentType.c_str(), buffer, len);
     }
 
     bool hasParam(const String& name, bool post=false, bool file=false) const
