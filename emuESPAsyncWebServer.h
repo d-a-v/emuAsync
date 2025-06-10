@@ -337,6 +337,11 @@ public:
 
     void onEvent(AwsEventHandler handler) { _handler = handler; }
 
+    void cleanupClients ()
+    {
+        WebSockets4WebServer::disconnect();
+    }
+
 private:
 
     String _root;
