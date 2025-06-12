@@ -339,7 +339,8 @@ public:
 
     void cleanupClients ()
     {
-        WebSockets4WebServer::disconnect();
+        // cleanup *dead* clients
+        //no - it kills everything: WebSockets4WebServer::disconnect();
     }
 
 private:
